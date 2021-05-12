@@ -25,10 +25,103 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+	<link href="https://fonts.googleapis.com/css?family=Aladin" rel="stylesheet">
+	<link href='css/simplelightbox.min.css' rel='stylesheet' type='text/css'>
+	<script src="js/jquery-2.1.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/ekko-lightbox.js"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script type="text/javascript">
+$(document).ready(function(){
+  $('body').append('<div id="toTop" class="btn btn-info"><span class="glyphicon glyphicon-chevron-up"></span> Back to Top</div>');
+	$(window).scroll(function () {
+		if ($(this).scrollTop() != 0) {
+			$('#toTop').fadeIn();
+		} else {
+			$('#toTop').fadeOut();
+		}
+	});
+$('#toTop').click(function(){
+	$("html, body").animate({ scrollTop: 0 }, 600);
+	return false;
+});
+});
+
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+    $('i.glyphicon-thumbs-up, i.glyphicon-thumbs-down').click(function(){
+        var $this = $(this),
+        c = $this.data('count');
+        if (!c) c = 0;
+        c++;
+        $this.data('count',c);
+        $('#'+this.id+'-bs3').html(c);
+    });
+    $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+    });
+});
+
+	</script>
+
+<script type="text/javascript" src="js/simple-lightbox.js"></script>
+
+<script>
+	$(function(){
+		var $gallery = $('.gallery a').simpleLightbox();
+
+		$gallery.on('show.simplelightbox', function(){
+			console.log('Requested for showing');
+		})
+		.on('shown.simplelightbox', function(){
+			console.log('Shown');
+		})
+		.on('close.simplelightbox', function(){
+			console.log('Requested for closing');
+		})
+		.on('closed.simplelightbox', function(){
+			console.log('Closed');
+		})
+		.on('change.simplelightbox', function(){
+			console.log('Requested for change');
+		})
+		.on('next.simplelightbox', function(){
+			console.log('Requested for next');
+		})
+		.on('prev.simplelightbox', function(){
+			console.log('Requested for prev');
+		})
+		.on('nextImageLoaded.simplelightbox', function(){
+			console.log('Next image loaded');
+		})
+		.on('prevImageLoaded.simplelightbox', function(){
+			console.log('Prev image loaded');
+		})
+		.on('changed.simplelightbox', function(){
+			console.log('Image changed');
+		})
+		.on('nextDone.simplelightbox', function(){
+			console.log('Image changed to next');
+		})
+		.on('prevDone.simplelightbox', function(){
+			console.log('Image changed to prev');
+		})
+		.on('error.simplelightbox', function(e){
+			console.log('No image found, go to the next/prev');
+			console.log(e);
+		});
+	});
+</script>
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
