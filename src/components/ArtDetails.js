@@ -1,5 +1,4 @@
-
-import React, { useEffect } from "react";
+import React, { useEffect, Component } from "react";
 import { Link } from 'react-router-dom';
 import { makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Grid,TextField,InputAdornment} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
@@ -17,6 +16,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
+import Footer from './Footer'
 
 
 const useStyles = makeStyles({
@@ -29,7 +29,7 @@ const useStyles = makeStyles({
       backgroundColor: "black"
   },
   paper: {
-    padding: '10px 10px 10px 10px', 
+    padding: '10px 10px 10px 10px',
     margin: '10px 10px 10px 10px',
     position: 'inherit'
   },
@@ -42,7 +42,7 @@ const useStyles = makeStyles({
 const useStyles1 = makeStyles((theme) => ({
   root: {
     flexShrink: 0,
-    marginLeft: theme.spacing(2.5),
+    marginLeft: theme.spacing(3.5),
   },
 }));
 
@@ -121,11 +121,11 @@ export default function UploadDetails(props) {
     state(e.target.value);
     setState(e.target.value);
   }
-  
+
   // const [id , setId] = React.useState();
   // var books = []
   // var id = 8
-  
+
   const searchChange = (e) => {
     console.log(e.target.value)
     setSearchString(e.target.value)
@@ -152,7 +152,7 @@ export default function UploadDetails(props) {
       .then((Response) => {
         setCount (Response.data.Total_No_Of_Elements)
         console.log(count)
-        
+
       setUpload ( Response.data.data)
       console.log(upload)
     })
@@ -180,9 +180,9 @@ export default function UploadDetails(props) {
         console.log(page)
         console.log(upload)
         //console.log(Response.data.data)
-        
+
       })
-      
+
     });
 
 
@@ -198,7 +198,7 @@ export default function UploadDetails(props) {
         console.log(page)
         console.log(upload)
         //console.log(Response.data.data)
-        
+
       })
     }else{
       axios.get("http://localhost:8080/upload/page/serachedPages?serched="+searchString + "&pageNo="+ newPage)
@@ -210,19 +210,19 @@ export default function UploadDetails(props) {
         console.log(page)
         console.log(upload)
         //console.log(Response.data.data)
-        
+
       })
     }
-      
-      
-      
+
+
+
     };
-  
+
     const handleChangeRowsPerPage = (event) => {
       setRowsPerPage(parseInt(event.target.value, 10));
       setPage(0);
     };
-   
+
     // const localStorageEditSave = (updateId) => {
     //   localStorage.setItem('bookId',updateId)
     //   console.log(updateId)
@@ -241,10 +241,10 @@ export default function UploadDetails(props) {
         console.log(page)
         console.log(upload)
         //console.log(Response.data.data)
-        
+
       })
     }
-  
+
   return (
     <>
     <Snackbar open={snackbaropen} autoHideDuration={4000} anchorOrigin={{ vertical,horizontal }} key={vertical + horizontal}>
@@ -264,7 +264,7 @@ export default function UploadDetails(props) {
         label="Search"
         value = {searchString}
         onChange = {searchChange}
-        
+
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
@@ -282,11 +282,11 @@ export default function UploadDetails(props) {
           )
         }}
       />
-      
+
             </div>
         </div>
         <TableContainer>
-      <Table className={classes.table} size="small">
+      <Table className={classes.table} size="large">
         <TableHead>
           <TableRow>
             <TableCell align="left"><b>Action</b></TableCell>
@@ -304,14 +304,14 @@ export default function UploadDetails(props) {
           {console.log(upload)}
           {upload.map((row) => (
             <TableRow>
-              
+
               <TableCell>
               <IconButton
               onClick={() => deleteUpload(row.id)}
               //onClick = {() => deleteBook(row.id)}
               // onClick = {() => window.location.reload()}
               >
-              
+
               <DeleteIcon
                 color="default"
                 align="left"
@@ -321,7 +321,7 @@ export default function UploadDetails(props) {
 
 
               <Link to={`/edit/${row.id}`}>
-              <IconButton 
+              <IconButton
               // onClick = {() => localStorageEditSave(row.id)}
               >
                 <EditIcon
@@ -342,7 +342,7 @@ export default function UploadDetails(props) {
               <TableCell align="left">{row.size}</TableCell>
             </TableRow>
           ))}
-          
+
         </TableBody>
         <TableFooter>
           <TableRow>
@@ -352,7 +352,7 @@ export default function UploadDetails(props) {
               count={count}
               rowsPerPage={rowsPerPage}
               page={page}
-              
+
               // SelectProps={{
               //   inputProps: { 'aria-label': 'rows per page' },
               //   native: true,
@@ -361,7 +361,7 @@ export default function UploadDetails(props) {
               onChangeRowsPerPage={handleChangeRowsPerPage}
               ActionsComponent={TablePaginationActions}
             />
-            
+
           </TableRow>
         </TableFooter>
       </Table>

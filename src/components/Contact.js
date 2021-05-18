@@ -1,39 +1,27 @@
 import { render } from '@testing-library/react';
 import React, {Component} from 'react';
-import emailjs from 'emailjs-com';
 import AuthService from '../services/AuthService'
 <script src ="./src/components/Contact.js"></script>
 
 export default class Contact extends Component {
-	
+
 	constructor(props) {
 	  super(props);
-  
 	  this.state = {
 		firstname: "",
 		lastname: "",
 		email:"",
 		mobnumber:"",
 		message: "",
-		loading: false	
+		loading: false
 	  };
-
-	  function sendEmail(e) {
-		e.preventDefault();
-		emailjs.sendForm('service_8ntgbph', 'template_fmfkm2j', e.target, 'user_pSjtaIFFYmaHYuZsujzcU')
-		  .then((result) => {
-			  console.log(result.text);
-		  }, (error) => {
-			  console.log(error.text);
-		  });
-	  }
 	}
 	onChangeFirstname = (e) => {
 	  this.setState({
 		firstname: e.target.value
 	  });
 	}
-  
+
 	onChangeLastname = (e) => {
 	  this.setState({
 		lastname: e.target.value
@@ -45,7 +33,7 @@ export default class Contact extends Component {
 		  email: e.target.value
 		});
 	  }
-  
+
 	  onChangeMobnumber = (e) => {
 		this.setState({
 		  mobnumber: e.target.value
@@ -58,52 +46,52 @@ export default class Contact extends Component {
 		});
 	  }
 
-	// handleContact = (e) => {
-	//   e.preventDefault();
-  
-	//   this.setState({
-	// 	message: "",
-	// 	loading: true
-	//   });
-  
-	//   AuthService.contact(
-	// 	this.state.firstname,
-	// 	this.state.lastname,
-	// 	this.state.email,
-	// 	this.state.mobnumber,
-	// 	this.state.message
-	//   ).then(
-	// 	response => {
-	// 	  this.setState({
-	// 		message: response.data.message,
-	// 		successful: true
-	// 	  });
-	// 	},
-	// 	error => {
-	// 	  const resMessage =
-	// 		(error.response &&
-	// 		  error.response.data &&
-	// 		  error.response.data.message) ||
-	// 		error.message ||
-	// 		error.toString();
-  
-	// 	  this.setState({
-	// 		successful: false,
-	// 		message: resMessage
-	// 	  });
-	// 	}
-	//   );
-	// }
+////////////
 
+	handleContact = (e) => {
+	  e.preventDefault();
+
+	  this.setState({
+		message: "",
+		loading: true
+	  });
+
+	  AuthService.contact(
+		this.state.firstname,
+		this.state.lastname,
+		this.state.email,
+		this.state.mobnumber,
+		this.state.message
+	  ).then(
+		response => {
+		  this.setState({
+			message: response.data.message,
+			successful: true
+		  });
+		},
+		error => {
+		  const resMessage =
+			(error.response &&
+			  error.response.data &&
+			  error.response.data.message) ||
+			error.message ||
+			error.toString();
+
+		  this.setState({
+			successful: false,
+			message: resMessage
+		  });
+		}
+	  );
+	}
 
 render() {
     return (
-		<React.Fragment>
-			<form onSubmit={this.sendEmail}>
+			<form onSubmit={this.onClick}>
 			<meta charSet="utf-8" />
 			<meta httpEquiv="X-UA-Compatible" content="IE=edge" />
 			<meta name="viewport" content="width=device-width, initial-scale=1" />
-			<title>Creative Tales</title>
+			<title>Visual Garden</title>
 			<link href="css/bootstrap.min.css" rel="stylesheet" />
 			<link href="css/style.css" rel="stylesheet" />
 			<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
@@ -125,75 +113,10 @@ render() {
 
 			<link rel="stylesheet" type="text/css" href="css/util.css" />
 			<link rel="stylesheet" type="text/css" href="css/main.css" />
-			<section id="header" className="clearfix">
-				<nav className="navbar navbar-default">
-					<div className="container clearfix">
-						<div className="navbar-header clearfix page-scroll">
-							<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-								<span className="sr-only">Toggle navigation</span>
-								<span className="icon-bar" />
-								<span className="icon-bar" />
-								<span className="icon-bar" />
-							</button>
-							<a href="index.html" id="logo"><img src="img/vv.png" height={100} /></a>
-						</div>
-
-						<div className="collapse navbar-collapse clearfix" id="bs-example-navbar-collapse-1">
-							<ul className="nav navbar-nav navbar-right">
-								<li>
-									<a className="tag_menu" href="index.html">HOMEPAGE</a>
-								</li>
-
-								<li>
-									<a className="tag_menu" href="gallery.html">GALLERY</a>
-								</li>
-								<li>
-									<a className="tag_menu" href>LOG IN</a>
-								</li>
-								<li>
-									<a className="tag_menu" href>SIGN UP</a>
-								</li>
-								<li className="dropdown">
-									<a className="tag_menu border_none" href="#" data-toggle="dropdown" role="button" aria-expanded="false">MORE<span className="caret" /></a>
-									<ul className="dropdown-menu drop_2" role="menu">
-										<li><a href>EVENTS</a></li>
-
-									
-										<li><a href="contact.html">CONTACT</a></li>
-									</ul>
-								</li>
-								<li className="dropdown">
-									<a className="tag_menu" href="#" data-toggle="dropdown"><span className="fa fa-search" /></a>
-									<ul className="dropdown-menu drop_1" style={{ minWidth: '300px' }}>
-										<li>
-											<div className="row_1">
-												<div className="col-sm-12">
-													<form className="navbar-form navbar-left" role="search">
-														<div className="input-group">
-															<input type="text" className="form-control" placeholder="Search" />
-															<span className="input-group-btn">
-																<button className="btn btn-primary" type="button">
-																										  Search</button>
-															</span>
-														</div>
-													</form>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</nav>
-			</section>
-
-
-
 
 			<div className="container-contact100">
 				<div className="wrap-contact100">
-					<form className="contact100-form validate-form">
+					<form action="mailto:visualgarden1@gmail.com" method="post" enctype="text/plain" className="contact100-form validate-form">
 						<span className="contact100-form-title">
 										Send Us A Message
 						</span>
@@ -227,7 +150,7 @@ render() {
 							<span className="focus-input100" />
 						</div>
 						<div className="container-contact100-form-btn">
-							<button onSubmit={this.sendEmail} type="submit" value="Send Message" className="contact100-form-btn"  >
+							<button onSubmit={this.onClick} type="submit" value="Send Message" className="contact100-form-btn"  >
 								Send Message
 							</button>
 						</div>
@@ -237,60 +160,11 @@ render() {
 				</div>
 			</div>
 			<div id="dropDownSelect1" />
-			{/* <section id="footer">
-				<div className="container">
-					<div className="row">
-						<div className="footer clearfix">
-							<div className="footer_1 clearfix">
-								<div className="col-sm-3">
-									<div className="footer_1_left">
-										<h3>Creative Tales</h3>
-										<p>Sri Lanka</p>
-									</div>
-								</div>
-								<div className="col-sm-6">
-									<div className="footer_3 clearfix">
-										<p>  © 2021 Creative Tales.All Rights Reserved </p>
-									</div>
-								</div>
-								<div className="col-sm-3">
-									<div className="footer_1_right pull-right">
-										<h1>CT <span>Creative Tales</span></h1>
-									</div>
-								</div>
-							</div>
-							<div className="footer_2 clearfix">
-								<div className="col-sm-7">
-									<div className="footer_2_left">
-										<a href="#">Sign Up For Headlines</a>
-										<a href="#">Customer Detail</a>
-										<a href="#">Connect With Us</a>
-										<a href="#">Media</a>
-										<a href="#">Work</a>
-										<a className="border_none_1" href="#">Policy</a>
-									</div>
-								</div>
-								<div className="col-sm-5">
-									<div className="footer_2_right pull-right">
-										<ul className="social-network social-circle">
-											<li><a href="#" className="icoRss" title="Rss"><i className="fa fa-rss" /></a></li>
-											<li><a href="#" className="icoFacebook" title="Facebook"><i className="fa fa-facebook" /></a></li>
-											<li><a href="#" className="icoTwitter" title="Twitter"><i className="fa fa-twitter" /></a></li>
-											<li><a href="#" className="icoGoogle" title="Google +"><i className="fa fa-google-plus" /></a></li>
-											<li><a href="#" className="icoLinkedin" title="Linkedin"><i className="fa fa-linkedin" /></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section> */}
+
 			<div id="toTop" className="btn btn-info" style={{ display: 'block', background: '#e02626', borderColor: '#e02626' }}><span className="fa fa-chevron-up" /></div>
 		<div id="dropDownSelect1" />
 
 </form>
-</React.Fragment>
 		);
+  }
 		}
-}

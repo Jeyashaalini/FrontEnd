@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {Typography , Link, CircularProgress} from '@material-ui/core';
 import AuthService from '../services/AuthService'
+import '../index.css'
 // import ReactDOM from "react-dom";
 
 export default class Login extends Component {
@@ -37,7 +38,7 @@ export default class Login extends Component {
 
     AuthService.login(this.state.username, this.state.password)
       .then(() => {
-        this.props.history.push("/profile");
+        this.props.history.push("/home");
         window.location.reload();
       },
       error => {
@@ -57,20 +58,24 @@ export default class Login extends Component {
   }
     render() {
         return (
-          <React.Fragment>
+
             <form onSubmit={this.handleLogin}>
                 <h3>Sign In</h3>
-            
-                <div className="form-group" id="log">
-                    <label>Username</label>
-                    <input type="text" className="form-control" placeholder="Enter username" value={this.state.username}
-                    onChange={this.onChangeUsername} />
+
+                <div className="form-group"  id="log">
+                <div>
+                  <label>UserName</label>
+                  <input type="username" className="form-control"  placeholder="Username" value={this.state.username}
+                  onChange={this.onChangeUsername}/>
+                    </div>
                 <div/>
 
                 <div className="form-group">
+                <div>
                     <label>Password</label>
                     <input type="password" className="form-control" placeholder="Enter password" value={this.state.password}
                     onChange={this.onChangePassword} />
+                    </div>
                 </div>
 
                 <div className="form-group">
@@ -79,28 +84,27 @@ export default class Login extends Component {
                         <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
                     </div>
                 </div>
-            
+
                 <button disabled={this.state.loading}>
                             {this.state.loading && (
                               <CircularProgress size='10'/>
                             )}
                             Login
                           </button>
-                
+
                 {this.state.message && (
                     <div>
                       <Typography color='error' variant="overline" display="block" gutterBottom>
                           <strong>{this.state.message}</strong>
                       </Typography>
                     </div>
-                  )} 
+                  )}
                   <p className="forgot-password text-right">
-                    Not registered <Link to={"/sign-up"}> SignUp?</Link>
+                    Not registered <Link to={"signup"}>SignUp?</Link>
                 </p>
-              </div> 
+              </div>
             </form>
-            </React.Fragment>
         );
-} 
+}
 }
 // ReactDOM.render( < Login /> , document.getElementById('app'));

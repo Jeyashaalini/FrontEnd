@@ -10,10 +10,10 @@ import Snackbar from '@material-ui/core/Snackbar';
 import axios from 'axios';
 
 const style={
-    
+
   root:{
     minWidth:450,
-    
+
     backgroundColor:"#8c8c8c",
     marginTop:40,
     color:'#212121',
@@ -24,7 +24,7 @@ const style={
       backgroundcolor:'#212121',
       color:"#424242",
       margin:50
-    }     
+    }
   }
 
 
@@ -45,13 +45,14 @@ export default class Sell extends Component{
       price: 0,
       medium : '',
       image : [],
+      phoneNumber : '',
       vertical : 'top',
       horizontal : 'center',
       isSucess : false,
     }
     // localStorage.setItem('user',true)
       // localStorage.removeItem('user')
-      
+
   }
 
   TitleChange = (e) => {
@@ -73,7 +74,7 @@ export default class Sell extends Component{
   //   alert(file.result)
   //   file.readAsBinaryString()
   // }
- 
+
   }
   ArtistNameChange = (e) => {
     this.setState ({
@@ -101,7 +102,7 @@ export default class Sell extends Component{
   }
 
   PriceChange = (e) => {
-  var n = Number(e.target.value) 
+  var n = Number(e.target.value)
     this.setState ({
       price:n
     })
@@ -110,6 +111,11 @@ export default class Sell extends Component{
   MediumChange = (e) => {
     this.setState ({
       medium:e.target.value
+    })
+  }
+  PhoneNumberChange = (e) => {
+    this.setState ({
+      phoneNumber:e.target.value
     })
   }
 
@@ -136,7 +142,7 @@ export default class Sell extends Component{
     // this.setState({
     //     selectedFile: e.target.files
     // });
-    
+
     // fetch('http://localhost:8080/upload', {
     //     method: 'post',
     //     body: formData
@@ -200,7 +206,8 @@ fillAlert = () => {
       size : "",
       description : "",
       price : 0,
-      image:"",  
+      image:"",
+      phoneNumber: ''
     })
   }
 
@@ -233,17 +240,17 @@ fillAlert = () => {
               <Grid item xs={4}>
               <Card style={style.root} >
                 <Paper style={{margin:10}}>
-          
+
               <CardContent>
                 <form >
-                  
+
                   <Grid container spacing={1}>
                       <Grid item xs={12}>
                         <Typography component="h1" variant="h2" >Upload Your Paintings</Typography>
                       </Grid>
 
 
-                      
+
                       <Grid item xs={6}>
                         <FormControl fullWidth>
                           <TextField
@@ -349,11 +356,11 @@ fillAlert = () => {
                          />
                         </FormControl>
                       </Grid>
-                     
-                      
+
+
                       <Grid item xs={6}>
                         <FormControl fullWidth>
-                          <TextField 
+                          <TextField
                               type = "text area"
                                variant="outlined"
                                size = "small"
@@ -369,8 +376,8 @@ fillAlert = () => {
                          />
                          </FormControl>
                       </Grid>
-                      
-                      
+
+
                       <Grid item xs={6}>
                         <FormControl fullWidth>
                           <TextField
@@ -387,6 +394,26 @@ fillAlert = () => {
                                autoComplete="Price"
                          />
                         </FormControl>
+                      </Grid>
+                      <Grid item xs={6}/>
+
+                      <Grid item xs={5}>
+                        <FormControl fullWidth>
+                          <TextField
+                              type = "text area"
+                               variant="outlined"
+                               size = "small"
+                               margin="normal"
+                               value = {this.state.phoneNumber}
+                               onChange = {this.PhoneNumberChange}
+                               required
+                               fullWidth
+                               id="phoneNumber"
+                               label="Phone Number"
+                               name="phoneNumber"
+                               autoComplete="Phone Number"
+                         />
+                         </FormControl>
                       </Grid>
                       <Grid item xs={6}/>
                       {/* <Grid item xs={6}>
@@ -420,8 +447,9 @@ fillAlert = () => {
                             <input type="file" className="form-control" name="file" multiple onChange={this.onFileChangeHandler}/>
                       </Grid>
                       <Grid item xs={6}/>
-                        
-                      
+
+
+
                       <Grid item xs={2}>
                         <FormControl>
                           <Button
@@ -440,7 +468,7 @@ fillAlert = () => {
                        {/* <label htmlFor="contained-button-file">
           Please Upload
         </label> */}
-        
+
                          &emsp;
                         <Grid item xs={2}>
                         <FormControl>
@@ -458,7 +486,7 @@ fillAlert = () => {
                       </Grid>
 
 
-        
+
       {/* <Avatar src="/broken-image.jpg" /> */}
 
 
@@ -474,11 +502,11 @@ fillAlert = () => {
         </IconButton>
       </label> */}
 
-                      
 
-                      </Grid> 
-                 
-                  
+
+                      </Grid>
+
+
                 </form>
               </CardContent>
               </Paper>
@@ -489,7 +517,7 @@ fillAlert = () => {
           ):(
             <Grid container spacing = {1} >
               <Grid item xs={3}/>
-              
+
               <Grid item xs={6} style={{marginTop:"12%",margin:'12%'}}>
               <Card style = {{backgroundColor:"#8c8c8c"}} >
                 <Paper style={{margin:10}}>
@@ -507,6 +535,6 @@ fillAlert = () => {
           }
           </>
         )
-        
+
     }
 }

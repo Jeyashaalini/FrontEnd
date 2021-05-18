@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect , Component} from "react";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
@@ -21,9 +21,8 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.background.default,
     },
     img: {
-
       display: 'block',
-      // overflow: 'hidden',
+      overflow: 'hidden',
       height : 300,
       width : 300
     },
@@ -67,11 +66,11 @@ const useStyles = makeStyles((theme) => ({
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
     const maxSteps = props.image.length;
-  
+
     const handleNext = () => {
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
-  
+
     const handleBack = () => {
       setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
@@ -79,11 +78,11 @@ const useStyles = makeStyles((theme) => ({
     useEffect(() => {
       console.log(props.image)
     },[]);
-  
+
     const handleStepChange = (step) => {
       setActiveStep(step);
     };
-  
+
     return (
       <>
               <div className={classes.root}>
@@ -122,8 +121,8 @@ const useStyles = makeStyles((theme) => ({
               </Button>
             }
           />
-                
-        </div>  
+
+        </div>
       </>
     )
   }

@@ -16,18 +16,20 @@ import Avatar from '@material-ui/core/Avatar';
 import AllArtBuy from './AllArtBuy';
 import Login from './Login';
 import SignUp from './SignUp';
+import Home from './Home'
 import Buy from './Buy';
 import Sell from './Upload';
 // import index from './index'
-// import Admin from './Admin';
-import BookDetails from './ArtDetails';
-import EditBook from './EditUpload';
+import Admin from './Admin';
+import ArtDetails from './ArtDetails';
+import EditUpload from './EditUpload';
+import BuyPhoto from './BuyPhoto'
 // import Pending from './Pending';
 // import User from './User';
 // import AddUser from './AddUser';
 import vv from './vv.png';
-// import Header from './index'
-
+import Header from './Header'
+import Footer from './Footer'
 
 
 class NavBar extends Component {
@@ -43,7 +45,7 @@ class NavBar extends Component {
             AnchorEl  : event.currentTarget
         });
       };
-    
+
     handleClose = () => {
         this.setState({
             AnchorEl  : null
@@ -57,18 +59,19 @@ class NavBar extends Component {
         })
         localStorage.clear()}
 
-    
+
     render(){
         return(
             <>
+<Header/>
                 <Router>
                     <AppBar position = "sticky" style = {{backgroundColor:" #6d0f0f"}}/>
                         <Toolbar style = {{color:"black"}}>
                         <Grid container spacing={1}>
                         <Grid item xs={2}>
                         <Tooltip title="Home">
-                        <IconButton href = "/index">
-                            
+                        <IconButton href = "/home">
+
                                <img src = {vv} height="80" alt = "Logo"/>
                         </IconButton>
                         </Tooltip>
@@ -85,6 +88,15 @@ class NavBar extends Component {
                                 </>
                              ):(null)}
                         </Grid>
+                        {/* <Grid item xs={1}>
+                                <br/>
+                                <Typography>
+                                    <Button variant="outlined" color="white" href = "/gallery" style = {{width:"100%"}}>
+                                        Gallery
+                                    </Button>
+                                </Typography>
+                            </Grid> */}
+
                         <Grid item xs={6}/>
                         {!localStorage.getItem('user') ? (
                             <>
@@ -104,10 +116,10 @@ class NavBar extends Component {
                                     </Button>
                                 </Typography>
                             </Grid>
-                            
+
                             </>):
                             (<>
-                                
+
                                 <Grid item xs={1}  style = {{marginRight:0,marginTop:35}}>
                                 <span >{localStorage.getItem('user')}</span>
                                 </Grid>
@@ -129,32 +141,30 @@ class NavBar extends Component {
                                     <MenuItem onClick={this.handleLogoutClose}> <Button href = '/login'>Logout</Button></MenuItem>
                                 </Menu>
                             </Grid>
-                            
+
                             </>)}
-                            
+
                         </Grid>
                         </Toolbar>
-                    
+
                     <div>
+
                         <Switch>
-                            {/* <Route exact path={["/", "/home"]} component={BuySellHome} /> */}
+                            <Route exact path={["/", "/home"]} component={Home} />
                             <Route exact path={'/login'} component={Login} />
                             <Route exact path={'/signup'} component={SignUp} />
                             <Route exact path={'/buy'} component={AllArtBuy} />
                             <Route exact path={'/sell'} component={Sell} />
                             <Route exact path={'/buyPainting/:id'} component={Buy} />
-                            {/* <Route exact path={'/admin'} component={Admin} /> */}
-                            {/* <Route exact path={'/userDetails'} component={User} /> */}
-                            <Route exact path={'/ArtDetails'} component={BookDetails} />
-                            <Route exact path={'/edit'} component={EditBook} />
-                            <Route exact path={'/edit/:id'} component={EditBook} />
-                            {/* <Route exact path={'/pending'} component={Pending} /> */}
-                            {/* <Route exact path={'/AddUser'} component={AddUser} /> */}
-                            {/* <Route exact path={'/AddUser/:id'} component={AddUser} /> */}
+                            <Route exact path={'/admin'} component={Admin} />
+                           <Route exact path={'/ArtDetails'} component={ArtDetails} />
+                            {/* <Route exact path={'/edit'} component={EditBook} />
+                            <Route exact path={'/edit/id'} component={EditBook} /> */}
                         </Switch>
                     </div>
-               
+
                 </Router>
+<Footer/>
             </>
          ) }
 }

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import TableHead from '@material-ui/core/TableHead';
 import Button from '@material-ui/core/Button';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -92,7 +92,7 @@ class ListImageComponent extends Component {
                         images.length === 0 ?
                         <TableRow>
                             <TableCell colSpan="6" align="center">No Images Available.</TableCell>
-                        </TableRow> 
+                        </TableRow>
                         :
                         images.map(row => (
                             <TableRow key={row.id}>
@@ -108,8 +108,8 @@ class ListImageComponent extends Component {
                         ))
                     }
                     </TableBody>
-                </Table>          
-			
+                </Table>
+
             </div>
         );
     }

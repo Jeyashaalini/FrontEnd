@@ -28,7 +28,7 @@ const useStyles = makeStyles({
       backgroundColor: "black"
   },
   paper: {
-    padding: '10px 10px 10px 10px', 
+    padding: '10px 10px 10px 10px',
     margin: '10px 10px 10px 10px',
     position: 'inherit'
   },
@@ -102,7 +102,7 @@ function TablePaginationActions(props) {
 
 export default function Pending() {
   const classes = useStyles();
-  const [pendings, setPendings] = React.useState([]);
+  const [pending, setPending] = React.useState([]);
   const [searchString, setSearchString]= React.useState('');
   const [page, setPage] = React.useState(0);
   const [count, setCount] = React.useState(0);
@@ -115,7 +115,7 @@ export default function Pending() {
   });
 
   const { vertical, horizontal } = state;
-  
+
   const searchChange = (e) => {
     console.log(e.target.value)
     setSearchString(e.target.value)
@@ -142,16 +142,16 @@ export default function Pending() {
       .then((Response) => {
         setCount (Response.data.Total_No_Of_Elements)
         console.log(count)
-        setPendings ( Response.data.data)
-      console.log(pendings)
+        setPending ( Response.data.data)
+      console.log(pending)
     })
     }else{
       axios.get("http://localhost:8080/pending/page/serachedPages?serched="+searchString, {headers : {"Authorization" : localStorage.getItem('tokenType') + " " + localStorage.getItem('token')}})
       .then((Response) => {
         setCount (Response.data.Total_No_Of_Elements)
         console.log(count)
-        setPendings( Response.data.data)
-      console.log(pendings)
+        setPending( Response.data.data)
+      console.log(pending)
     })
   }
 }
@@ -164,13 +164,13 @@ export default function Pending() {
         console.log(Response.data.Total_No_Of_Elements)
         setCount (Response.data.Total_No_Of_Elements)
         console.log(count)
-        setPendings ( Response.data.data)
+        setPending ( Response.data.data)
         console.log(page)
-        console.log(pendings)
+        console.log(pending)
         console.log(Response)
-        
+
       })
-      
+
     },[]);
 
     const clearText = (e) => {
@@ -181,9 +181,9 @@ export default function Pending() {
         console.log(Response.data.Total_No_Of_Elements)
         setCount (Response.data.Total_No_Of_Elements)
         console.log(count)
-        setPendings ( Response.data.data)
+        setPending ( Response.data.data)
         console.log(page)
-        console.log(pendings)
+        console.log(pending)
         //console.log(Response.data.data)
       })
   }
@@ -197,11 +197,11 @@ export default function Pending() {
         //console.log(Response.data.Total_No_Of_Elements)
         // setCount (Response.data.Total_No_Of_Elements)
         // console.log(count)
-        setPendings ( Response.data.data)
+        setPending ( Response.data.data)
         console.log(page)
-        console.log(pendings)
+        console.log(pending)
         //console.log(Response.data.data)
-        
+
       })
     }else{
       axios.get("http://localhost:8080/pending/page/serachedPages?serched="+searchString + "&pageNo="+ newPage, {headers : {"Authorization" : localStorage.getItem('tokenType') + " " + localStorage.getItem('token')}})
@@ -209,24 +209,24 @@ export default function Pending() {
         // console.log(Response.data.Total_No_Of_Elements)
         // setCount (Response.data.Total_No_Of_Elements)
         // console.log(count)
-        setPendings ( Response.data.data)
+        setPending ( Response.data.data)
         console.log(page)
-        console.log(pendings)
+        console.log(pending)
         //console.log(Response.data.data)
-        
+
       })
     }
-      
-      
-      
+
+
+
     };
-  
+
     const handleChangeRowsPerPage = (event) => {
       setRowsPerPage(parseInt(event.target.value, 10));
       setPage(0);
     };
-   
-  
+
+
   return (
     <>
     <Snackbar open={snackbaropen} autoHideDuration={4000} anchorOrigin={{ vertical,horizontal }} key={vertical + horizontal}>
@@ -286,8 +286,8 @@ export default function Pending() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {pendings.map((row) => (
-            
+          {pending.map((row) => (
+
             <TableRow>
               <TableCell>
               <IconButton
@@ -320,7 +320,7 @@ export default function Pending() {
               count={count}
               rowsPerPage={rowsPerPage}
               page={page}
-              
+
               // SelectProps={{
               //   inputProps: { 'aria-label': 'rows per page' },
               //   native: true,
@@ -329,10 +329,10 @@ export default function Pending() {
               onChangeRowsPerPage={handleChangeRowsPerPage}
               ActionsComponent={TablePaginationActions}
             />
-            
+
           </TableRow>
         </TableFooter>
-      </Table>  
+      </Table>
     </TableContainer>
       </Paper>
     </Grid>

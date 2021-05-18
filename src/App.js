@@ -1,21 +1,25 @@
 import React from 'react'
 import './App.css';
+import './index.css'
 // import Header from './components/Header';
 // import Footer from './components/Footer';
-// import Home from './components/Home';
-//  import Contact from './components/Contact';
+import Home from './components/Home';
+import Gallery from './components/Gallery';
+import Events from './components/Events';
+import Contact from './components/Contact';
 //  import Login from './components/Login';
- import Router from "./components/Router"
+import AppRouter from "./components/AppRouter"
 // import { Button, Menu, MenuItem, Switch } from '@material-ui/core';
 // import Buy from './components/Buy';
-//import Upload from './components/Upload';
+// import Upload from './components/Upload';
 // import { Route } from 'react-router-dom';
-// import NavBar from './components/NavBar';
-// import RoutePath from './components/RoutePath'
+import NavBar from './components/NavBar';
+import BuyPhoto from './components/BuyPhoto'
+import RoutePath from './components/RoutePath'
 //import AddImg from './components/AddImg'
 // import AddEvent from './components/AddEvent'
 
-  
+
 class App extends React.Component {
   render() {
   return (
@@ -24,12 +28,14 @@ class App extends React.Component {
     <Home/>
 		<Footer/> */}
     {/* <Login/>  */}
-     {/* <Contact/> */}
-     <Router/> 
-    {/* <RoutePath/> */}
+    {/*  <Contact/>*/}
+    {/*  <Router/>*/}
+    {/* <Gallery/>*/}
+    {/* <Events/>*/}
+     <RoutePath/>
     {/*<AddImg/>*/}
-    {/*<Upload/>*/}
-	{/* <NavBar/> */}
+    {/* <Upload/> */}
+	{/* <NavBar/>*/}
     {/* <AddEvent/> */}
     </div>
   );

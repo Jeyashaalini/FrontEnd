@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import {Typography} from '@material-ui/core'
 import { Link } from "react-router-dom";
+import Stripe from './Stripe'
 import AuthService from '../services/AuthService'
+import '../index.css'
 
 export default class Register extends Component {
   constructor(props) {
@@ -11,6 +13,7 @@ export default class Register extends Component {
       username: "",
       email: "",
       password: "",
+      image:"",
       successful: false,
       message: ""
     };
@@ -64,7 +67,8 @@ export default class Register extends Component {
     AuthService.register(
       this.state.username,
       this.state.email,
-      this.state.password
+      this.state.password,
+      this.state.image
     ).then(
       response => {
         this.setState({
@@ -89,7 +93,7 @@ export default class Register extends Component {
   }
     render() {
         return (
-            
+
 <React.Fragment>
             <form onSubmit={this.handleRegister}>
                 <div>
@@ -97,7 +101,7 @@ export default class Register extends Component {
                 !this.state.successful && (
                     <div>
                         <h3>Register Now</h3>
-                      
+
                         <div className="form-group">
                             <label>Username</label>
                             <input type="text" className="form-control" placeholder="Enter username" value={this.state.username}
@@ -119,12 +123,13 @@ export default class Register extends Component {
                           <label>Update your Profile picture</label>
                         <input type="file" className="form-control" name="file" onChange={this.onFileChangeHandler}/>
                         </div>
+                        <Stripe/>
                         <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
                     </div>
                     )
               }
                 <p className="forgot-password text-right">
-                    Already registered <Link to={"/sign-in"}>sign in?</Link>
+                    Already registered <Link to={"/signin"}>sign in?</Link>
                 </p>
 
                 {

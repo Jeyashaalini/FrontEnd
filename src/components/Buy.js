@@ -1,17 +1,19 @@
-
 import React, {Component} from "react";
+import ReactDOM from "react-dom";
+import StripeCheckout from "react-stripe-checkout";
 import{Card,CardContent,FormControl,TextField,Grid, Paper} from "@material-ui/core";
 import Button from '@material-ui/core/Button'
+
 import Alert from '@material-ui/lab/Alert';
-//import art from './art.jpg'
+import Typography from '@material-ui/core/Typography';
 import BuyPhoto from "./BuyPhoto";
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-// import Rating from '@material-ui/lab/Rating';
-// import Box from '@material-ui/core/Box';
+import Rating from '@material-ui/lab/Rating';
+import Box from '@material-ui/core/Box';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
 import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
@@ -19,7 +21,7 @@ import SentimentSatisfiedAltIcon from '@material-ui/icons/SentimentSatisfiedAltO
 import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentVerySatisfied';
 import Snackbar from '@material-ui/core/Snackbar';
 import axios from 'axios';
-
+import Stripe from'./Stripe';
 
 
 
@@ -36,9 +38,11 @@ const style={
       minWidth:500,
       backgroundcolor:'#8c8c8c',
       color:"#424242",
-      marginTop:20
+      marginTop:20,
+      marginLeft:20,
+      marginRight:20
     }
-    
+
 }
 const customIcons = {
   1: {
@@ -83,7 +87,7 @@ export default class Buy extends Component{
           horizontal : 'center',
           isSucess : false,
         }
-        
+
       }
 
       componentDidMount(){
@@ -94,8 +98,8 @@ export default class Buy extends Component{
               art:Response.data,
               image:Response.data.image
             })
-          })    
-          
+          })
+
     }
 
     buyerNameChange = (e) => {
@@ -120,9 +124,9 @@ export default class Buy extends Component{
       }
     }
 
-      IsAlert =  () =>{
+    IsAlert =  () =>{
         let pending = {
-          art : this.state.art,
+          upload : this.state.upload,
           buyerName : this.state.buyerName,
           buyerAddress : this.state.buyerAddress,
           buyerPhoneNum : this.state.buyerPhoneNum
@@ -131,8 +135,8 @@ export default class Buy extends Component{
           axios.post('http://localhost:8080/pending',pending)
           .then((Response) => {
             console.log(pending)
-            axios.delete('http://localhost:8080/upload/'+ this.props.match.params.id)
-            this.setState({snackbaropen:true,isSucess:true,open : false, message:'We will deliver your painting soon..!! — Thank you!'})
+            
+            this.setState({snackbaropen:true,isSucess:true,open : false, message:'We will deliver your order soon..!! — Thank you!'})
             setTimeout(()=> this.fillAlert(), 3000)
           })
         }else {
@@ -145,14 +149,14 @@ export default class Buy extends Component{
           open : true,
         })
       };
-    
+
       handleClose = () => {
         this.setState ({
           open : false,
         })
       };
-      
-  
+
+
     render(){
       const { vertical, horizontal } = this.state;
       //console.log(this.state.book)
@@ -172,8 +176,8 @@ export default class Buy extends Component{
               }
             </Snackbar>
           </div>
-        <Grid container spacing = {2}  style = {{marginTop:30}}> 
-        
+        <Grid container spacing = {2}  style = {{marginTop:30}}>
+
         <Grid item xs={8}>
           <Card style={style.root}>
             <Paper style={{margin:10}}>
@@ -197,7 +201,7 @@ export default class Buy extends Component{
                       <Grid item xs={10}/>
                       <Grid item xs={2}>
                         <FormControl>
-                          
+
                           <Button
                                type="submit"
                                fullWidth
@@ -207,7 +211,8 @@ export default class Buy extends Component{
                                style = {{backgroundColor:" #4a95e9 "}}
                             >
                              BUY
-                          </Button>
+                              </Button>
+
                           <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                           <DialogTitle id="form-dialog-title">Confirmation</DialogTitle>
                           <DialogContent>
@@ -250,29 +255,14 @@ export default class Buy extends Component{
                             <Button onClick={this.handleClose} color="primary">
                               Cancel
                             </Button>
-                            <Button  onClick = {() => this.IsAlert()} color="primary">
+                            <Button onClick = {()=> this.IsAlert()} color="primary">
                               Accpet
                             </Button>
                           </DialogActions>
                         </Dialog>
                        </FormControl>
-                       </Grid>  
-                       </Grid> 
-                       {/* {this.state.alertMessage ? 
-                          (<><br/>
-                          <Alert severity="success">We will deliver your book soon..!! — Thank you!</Alert>
-                            <Box component="fieldset" borderColor="transparent" > 
-                              <Typography ><center> Rate Us </center></Typography>
-                              <Rating
-                                name="Rate"
-                                defaultValue={1}
-                                getLabelText={(value) => customIcons[value].label}
-                                IconContainerComponent={IconContainer}
-                              />
-                            </Box>
-                          </>):(null)
-                        }     */}
-                   
+                       </Grid>
+                       </Grid>
               </CardContent>
               </Paper>
         </Card>
