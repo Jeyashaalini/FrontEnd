@@ -59,21 +59,21 @@ export default class Login extends Component {
     render() {
         return (
 
-            <form onSubmit={this.handleLogin}>
-                <h3>Sign In</h3>
-
-                <div className="form-group"  id="log">
-                <div>
-                  <label>UserName</label>
-                  <input type="username" className="form-control"  placeholder="Username" value={this.state.username}
+            <form  onSubmit={this.handleLogin}>
+                <h3 style={{"color":"White"}}>Sign In</h3>
+<br/>
+                <div className="form-group" style={{"color":"White"}} id="log">
+		<label>UserName</label>
+                <div style={{"padding-left":"300px"}}>             
+                  <input type="username" style={{"width":"650px"}} className="form-control"  placeholder="Username" value={this.state.username}
                   onChange={this.onChangeUsername}/>
                     </div>
                 <div/>
-
+<br/>
                 <div className="form-group">
-                <div>
-                    <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" value={this.state.password}
+		<label>Password</label>
+                <div style={{"padding-left":"300px"}}>                  
+                    <input type="password"  style={{"width":"650px"}} className="form-control" placeholder="Enter password" value={this.state.password}
                     onChange={this.onChangePassword} />
                     </div>
                 </div>
@@ -85,7 +85,7 @@ export default class Login extends Component {
                     </div>
                 </div>
 
-                <button disabled={this.state.loading}>
+                <button style={{"color":"black"}} disabled={this.state.loading}>
                             {this.state.loading && (
                               <CircularProgress size='10'/>
                             )}

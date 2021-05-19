@@ -43,6 +43,7 @@ export default class RoutePath extends Component {
                          <Route exact path={'/sell'} component={Upload} />
                          <Route exact path={'/buyPainting/:id'} component={Buy} />
                          <Route exact path={'/adminj'} component={AppRouter} />
+                         <Route exact path={'/admink'} component={AppRouter} />
                         <Route exact path={'/ArtDetails'} component={ArtDetails} />
                       {/*  <Route exact path={["/img-add"]} component={AddImg} />*/}
 

@@ -54,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-
   const useStyles1 = makeStyles((theme) => ({
     root: {
       flexShrink: 0,
@@ -434,14 +433,16 @@ function AllUploadBuy() {
             <List>
                 {upload.map((value)=> (
                     <div id={upload.id} class="pricing-horizontal row col-10 m-auto d-flex shadow-sm rounded overflow-hidden bg-white">
-                    <div class="col-md-3 text-center bg-secondary text-light py-4">
+                    <div class="col-md-3 text-center bg-secondary text-light py-4" style={{"padding-left": "40px","padding-bottom":"10px"}}>
                         <i><img src={value.image} width="200px" height="200px" style={{"border-radius":"50%"}}/></i>
                           </div>
                         <div class="pricing-horizontal-body offset-lg-1 col-md-5 col-lg-4 d-flex align-items-center pl-5 pt-lg-0 pt-4">
-                      <ul class="text-left px-4 list-unstyled mb-0 light-300 ">
-                  <li><i class="bx bxs-circle me-2"></i>{value.title} </li>
-                    <li><i class="bx bxs-circle me-2"></i>{value.price}</li>
+                      <ul class="text-left px-4 list-unstyled mb-0 light-300 " style={{"padding-left": "65px"}}>
+                        <br/>   <br/>   <br/>
+                       <li><i class="bx bxs-circle me-2"></i><h4>{value.title}</h4> </li>
+                       <li><i class="bx bxs-circle me-2"></i><h5>{value.price} LKR </h5></li>
           </ul>
+          <br/>
           <Link to={`/buyPainting/${value.id}`}>
             <Button size="small" class="btn" variant="contained">More Info & Buy</Button>
             </Link>

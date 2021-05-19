@@ -395,9 +395,9 @@ fillAlert = () => {
                          />
                         </FormControl>
                       </Grid>
-                      <Grid item xs={6}/>
+               
 
-                      <Grid item xs={5}>
+                      <Grid item xs={6}>
                         <FormControl fullWidth>
                           <TextField
                               type = "text area"
@@ -415,7 +415,7 @@ fillAlert = () => {
                          />
                          </FormControl>
                       </Grid>
-                      <Grid item xs={6}/>
+                      
                       {/* <Grid item xs={6}>
                         <FormControl fullWidth>
                           <TextField
@@ -447,7 +447,7 @@ fillAlert = () => {
                             <input type="file" className="form-control" name="file" multiple onChange={this.onFileChangeHandler}/>
                       </Grid>
                       <Grid item xs={6}/>
-
+<Grid item xs={6}/>
 
 
                       <Grid item xs={2}>
@@ -465,6 +465,7 @@ fillAlert = () => {
                           </Button>
                        </FormControl>
                        </Grid>
+
                        {/* <label htmlFor="contained-button-file">
           Please Upload
         </label> */}

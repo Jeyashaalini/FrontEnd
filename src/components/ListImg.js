@@ -75,16 +75,16 @@ class ListImageComponent extends Component {
                 </div>
                 <Typography variant="h4" style={style}>Image Details</Typography>
                 <Button variant="contained" color="primary" onClick={() => this.addImage()}>
-                    Add Image
+                  <h4>  Add Image</h4>
                 </Button>
 
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell align="right">Id</TableCell>
-                            <TableCell align="right">Image</TableCell>
-                            <TableCell align="right">ImageURL</TableCell>
-                            <TableCell align="right">Title</TableCell>
+                            <TableCell align="right"><h4>Id</h4></TableCell>
+                            <TableCell align="right"><h4>Image</h4></TableCell>
+                            <TableCell align="right"><h4>ImageURL</h4></TableCell>
+                            <TableCell align="right"><h4>Title</h4></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -96,12 +96,10 @@ class ListImageComponent extends Component {
                         :
                         images.map(row => (
                             <TableRow key={row.id}>
-                                <TableCell align="right">
-                                    {row.id}
-                                </TableCell>
-                                <TableCell align="right">{row.title}</TableCell>
-                                <TableCell align="right"><img src={row.image} alt= "image" width="150" height="150" /></TableCell>
-                                <TableCell align="right">{row.imageurl}</TableCell>
+                                <TableCell align="right"><h5> {row.id} </h5> </TableCell>
+                                <TableCell align="right"><h5>{row.title}</h5></TableCell>
+                                <TableCell align="right"><h5> <img src={row.image} alt= "image" width="150" height="150" /></h5></TableCell>
+                                <TableCell align="right"><h5>{row.imageurl}</h5></TableCell>
                                 <TableCell align="right" onClick={() => this.editImage(row.id)}><CreateIcon /></TableCell>
                                 <TableCell align="right" onClick={() => this.deleteImage(row.id)}><DeleteIcon /></TableCell>
                             </TableRow>

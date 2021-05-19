@@ -48,7 +48,7 @@ class ListEventComponent extends Component {
                 this.setState({"show":true, message : 'Event deleted successfully.'});
                 setTimeout(() => this.setState({"show":false}), 3000);
                 this.setState({
-                   events: this.state.images.filter(event => event.id !== eventId)
+                   events: this.state.events.filter(event => event.id !== eventId)
                 });
             } else {
                 this.setState({"show":false});
@@ -65,11 +65,11 @@ class ListEventComponent extends Component {
         this.props.history.push('/add-event');
     }
 
-	
+
     	render() {
-	const {events} = this.state;
+	       const {events} = this.state;
         console.log(events);
-        
+
         return (
             <div>
                 <div style={{"display":this.state.show ? "block" : "none"}}>
@@ -83,12 +83,12 @@ class ListEventComponent extends Component {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell align="right">Id</TableCell>
-                            <TableCell align="right">Title</TableCell>
-                            <TableCell align="right">Image</TableCell>
-                            <TableCell align="right">ImageURL</TableCell>
-                            <TableCell align="right">Description</TableCell>
-                            <TableCell align="right">Date</TableCell>
+                            <TableCell align="right"><h4>Id</h4></TableCell>
+                            <TableCell align="right"><h4>Title</h4></TableCell>
+                            <TableCell align="right"><h4>Image</h4></TableCell>
+                            <TableCell align="right"><h4>ImageURL</h4></TableCell>
+                            <TableCell align="right"><h4>Description</h4></TableCell>
+                            <TableCell align="right"><h4>Date</h4></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -96,26 +96,26 @@ class ListEventComponent extends Component {
                         events.length === 0 ?
                         <TableRow>
                             <TableCell colSpan="6" align="center">No Events Available.</TableCell>
-                        </TableRow> 
+                        </TableRow>
                         :
                         events.map(row => (
                             <TableRow key={row.id}>
                                 <TableCell align="right">
                                     {row.id}
                                 </TableCell>
-                                <TableCell align="right">{row.title}</TableCell>
-                                <TableCell align="right"><img src={row.image} alt= "event" width="150" height="150" /></TableCell>
-                                <TableCell align="right">{row.imageurl}</TableCell>
-                                <TableCell align="right">{row.description}</TableCell>
-                                <TableCell align="right">{row.date}</TableCell>
+                                <TableCell align="right"><h5>{row.title}</h5></TableCell>
+                                <TableCell align="right"><h5><img src={row.image} alt= "event" width="150" height="150" /></h5></TableCell>
+                                <TableCell align="right"><h5>{row.imageurl}</h5></TableCell>
+                                <TableCell align="right"><h5>{row.description}</h5></TableCell>
+                                <TableCell align="right"><h5>{row.date}</h5></TableCell>
                                 <TableCell align="right" onClick={() => this.editEvent(row.id)}><CreateIcon /></TableCell>
                                 <TableCell align="right" onClick={() => this.deleteEvent(row.id)}><DeleteIcon /></TableCell>
                             </TableRow>
                         ))
                     }
                     </TableBody>
-                </Table>          
-			
+                </Table>
+
             </div>
         );
     }

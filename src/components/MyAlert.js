@@ -8,8 +8,8 @@ class MyAlert extends Component {
         let horizontal = "right"
         return (
             <Snackbar anchorOrigin={{ vertical, horizontal }} open={this.props.show} autoHideDuration={6000}>
-                <Alert variant="filled" severity={this.props.type === "success" ? "success" : "error"}>                
-                    <strong>Success - { this.props.message }</strong>
+                <Alert variant="filled" severity={this.props.type === "success" ? "success" : "error"}>
+                    <strong> { this.props.message }-Success </strong>
                 </Alert>
             </Snackbar>
         )

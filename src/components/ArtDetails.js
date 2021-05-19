@@ -253,7 +253,7 @@ export default function UploadDetails(props) {
                 </Alert>
     </Snackbar>
       <div >
-    <Grid className={classes.grid} style = {{backgroundColor:"#8c8c8c"}}>
+    <Grid className={classes.grid} style = {{backgroundColor:"#8c8c8c","padding-left": "65px"}}>
       <Paper className = {classes.paper}>
         <h1>Art Work Details</h1>
         <div className={classes.search}>
@@ -285,10 +285,10 @@ export default function UploadDetails(props) {
 
             </div>
         </div>
-        <TableContainer>
-      <Table className={classes.table} size="large">
+        <TableContainer style={{"padding-left": "15px"}}>
+      <Table  className={classes.table} size="large">
         <TableHead>
-          <TableRow>
+          <TableRow >
             <TableCell align="left"><b>Action</b></TableCell>
             <TableCell align="left"><b>ID</b></TableCell>
             <TableCell align="left"><b>Title</b></TableCell>
@@ -300,10 +300,10 @@ export default function UploadDetails(props) {
             <TableCell align="left"><b>Size</b></TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody >
           {console.log(upload)}
           {upload.map((row) => (
-            <TableRow>
+            <TableRow >
 
               <TableCell>
               <IconButton
@@ -333,8 +333,9 @@ export default function UploadDetails(props) {
               </Link>
               </TableCell>
               <TableCell align="left">{row.id}</TableCell>
+              <br/>
               <TableCell align="left">{row.title}</TableCell>
-              <TableCell align="left">{row.price}</TableCell>
+              <TableCell align="left">{row.price}LKR</TableCell>
               <TableCell align="left">{row.medium}</TableCell>
               <TableCell align="left">{row.category}</TableCell>
               <TableCell align="left">{row.artistName}</TableCell>

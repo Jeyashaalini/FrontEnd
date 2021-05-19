@@ -6,12 +6,12 @@ import AddEvent from './AddEvent'
 import EditEvent from './EditEvent'
 import ListEvent from './ListEvent'
 import React, {Component} from "react";
-import Header from './Header'
-import Footer from './Footer'
 
 const style = {
-    color: 'red',
+    color: 'black',
     margin: '10px',
+    width:'1250px',
+    fontSize: '35px',
     backgroundColor: "white"
 }
 
@@ -20,7 +20,7 @@ export default class AppRouter extends Component {
     return(
         <div>
             <Router>
-                <div className="col-md-6" style={style}>
+                <div className="col-md-10" style={style}>
                     <h1 className="text-center" style={style}>Images & Events Upload</h1>
                     <Switch>
                     <Route path="/adminj" exact component={ListImg} />
@@ -28,7 +28,7 @@ export default class AppRouter extends Component {
                     <Route path="/add-image" component={AddImg} />
                     <Route path="/edit-image/:id" component={EditImg} />
 
-                    <Route path="/adminj/eve" exact component={ListEvent} />
+                    <Route path="/admink" exact component={ListEvent} />
                     <Route path="/events" component={ListEvent} />
                     <Route path="/add-event" component={AddEvent} />
                     <Route path="/edit-event/:id" component={EditEvent} />

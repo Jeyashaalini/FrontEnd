@@ -126,7 +126,7 @@ export default class Buy extends Component{
 
     IsAlert =  () =>{
         let pending = {
-          upload : this.state.upload,
+          uploadId : this.state.uploadId,
           buyerName : this.state.buyerName,
           buyerAddress : this.state.buyerAddress,
           buyerPhoneNum : this.state.buyerPhoneNum
@@ -135,7 +135,7 @@ export default class Buy extends Component{
           axios.post('http://localhost:8080/pending',pending)
           .then((Response) => {
             console.log(pending)
-            
+
             this.setState({snackbaropen:true,isSucess:true,open : false, message:'We will deliver your order soon..!! — Thank you!'})
             setTimeout(()=> this.fillAlert(), 3000)
           })
@@ -189,13 +189,14 @@ export default class Buy extends Component{
                       </Grid>
                       <Grid item xs={7}>
                         <div>
+                        <br/>  <br/>   <br/>
                           <h4 style={{textAlign:"left"}}>Title: {this.state.art.title}</h4>
                           <h4 style={{textAlign:"left"}}>Artist Name : {this.state.art.artistName}</h4>
                         <h4 style={{textAlign:"left"}}>Medium : {this.state.art.medium}</h4>
                           <h4 style={{textAlign:"left"}}>Category : {this.state.art.category}</h4>
                            <h4 style={{textAlign:"left"}}>Size : {this.state.art.size}</h4>
                           <h4 style={{textAlign:"left"}}>Descripition : {this.state.art.description}</h4>
-                          <h4 style={{textAlign:"left"}}>Price : {this.state.art.price}</h4>
+                          <h4 style={{textAlign:"left"}}>Price : {this.state.art.price} LKR</h4>
                         </div>
                       </Grid>
                       <Grid item xs={10}/>

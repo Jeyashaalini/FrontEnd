@@ -100,31 +100,32 @@ export default class Register extends Component {
               {
                 !this.state.successful && (
                     <div>
-                        <h3>Register Now</h3>
-
-                        <div className="form-group">
-                            <label>Username</label>
-                            <input type="text" className="form-control" placeholder="Enter username" value={this.state.username}
+                        <h3 style={{"color":"White"}}>Register Now</h3>
+				<br/>
+			<label style={{"color":"White"}}>Username</label>
+                        <div style={{"padding-left":"300px"}}className="form-group">
+                            
+                            <input type="text"  style={{"width":"650px"}} className="form-control" placeholder="Enter username" value={this.state.username}
                             onChange={this.onChangeUsername}/>
                         </div>
-
-                        <div className="form-group">
-                            <label>Email address</label>
-                            <input type="email" className="form-control" placeholder="Enter email" value={this.state.email}
+			<label style={{"color":"White"}}>Email address</label>
+                        <div style={{"padding-left":"300px"}} className="form-group">
+                            
+                            <input type="email"  style={{"width":"650px"}} className="form-control" placeholder="Enter email" value={this.state.email}
                             onChange={this.onChangeEmail} />
                         </div>
-
-                        <div className="form-group">
-                            <label>Password</label>
-                            <input type="password" className="form-control" placeholder="Enter password" value={this.state.password}
+			<label style={{"color":"White"}}>Password</label>
+                        <div style={{"padding-left":"300px"}} className="form-group">
+                            
+                            <input type="password" style={{"width":"650px"}} className="form-control" placeholder="Enter password" value={this.state.password}
                             onChange={this.onChangePassword} />
                         </div>
-                        <div className="form-group" >
-                          <label>Update your Profile picture</label>
-                        <input type="file" className="form-control" name="file" onChange={this.onFileChangeHandler}/>
-                        </div>
+ 			
                         <Stripe/>
-                        <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+			<br/>
+			<div style={{"padding-left":"300px"}}>
+                        <button type="submit"  style={{"width":"650px",}} className="btn btn-primary btn-block">Sign Up</button>
+			</div>
                     </div>
                     )
               }

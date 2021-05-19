@@ -7,19 +7,20 @@ import ApiService from '../services/ApiService';
 
 const formContainer = {
     display: 'flex',
-    flexFlow: 'row wrap'
+    flexFlow: 'row wrap',
+    fontSize:'20px'
 };
 
 const style ={
     display: 'flex',
-    justifyContent: 'center'
-
+    justifyContent: 'center',
+    fontSize:'20px'
 }
 
 class AddImageComponent extends Component{
     constructor(props){
         super(props);
-	
+
         this.state ={
             title: '',
             image: '',
@@ -34,8 +35,8 @@ class AddImageComponent extends Component{
     saveImage = (e) => {
         e.preventDefault();
         let image = {
-            image: this.state.image, 
-            imageurl: this.state.imageurl, 
+            image: this.state.image,
+            imageurl: this.state.imageurl,
             title: this.state.title
         };
 
@@ -56,8 +57,8 @@ class AddImageComponent extends Component{
     };
 
     onChange = (e) =>
-        this.setState({ 
-            [e.target.name]: e.target.value 
+        this.setState({
+            [e.target.name]: e.target.value
         });
     onFileChangeHandler = (e) => {
         e.preventDefault();
@@ -83,15 +84,17 @@ class AddImageComponent extends Component{
                 <div style={{"display":this.state.show ? "block" : "none"}}>
                     <MyAlert show = {this.state.show} message = {this.state.message} type = {"success"}/>
                 </div>
-                
-                <Typography variant="h4" style={style}>Add Images</Typography>
+
+                <Typography variant="h3" style={style}>Add Images</Typography>
                 <form style={formContainer}>
+                <div>
                 <TextField placeholder="title" fullWidth margin="normal" name="title" value={this.state.title} onChange={this.onChange}/>
                     <TextField type="text" placeholder="image" fullWidth margin="normal" name="image" value={this.state.image} onChange={this.onChange}/>
                     <TextField type="text" placeholder="imageurl" fullWidth margin="normal" name="imageurl" value={this.state.imageurl} onChange={this.onChange}/>
                     <input type="file" multiple onChange={this.onFileChangeHandler }/>
                     <img src={this.state.image}/>
-                    <Button variant="contained" color="primary" onClick={this.saveImage}>Save</Button>
+                    <Button variant="contained" color="primary" onClick={this.saveImage}><h4>Save</h4></Button>
+                  </div>
                 </form>
             </div>
         );

@@ -48,7 +48,7 @@ receivedData() {
        </Typography>
           </CardContent><br/><br/>
               <CardMedia>
-         <img src= {events.image}  style={{ height: "350px" }}/>
+         <img src= {events.image}  style={{ height: "400px",width:"350px" }}/>
             </CardMedia>
           <CardContent>
   <Typography variant="h4" color="textSecondary" component="p" style={{ color: "black" }}>
